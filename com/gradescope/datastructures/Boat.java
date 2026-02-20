@@ -1,16 +1,42 @@
 package com.gradescope.datastructures;
 
+/**
+ * Represents a Boat vehicle.
+ * <p>
+ * A Boat is a type of {@link WaterVehicle} with a fixed horsepower
+ * of 300 and a company name attribute.
+ * </p>
+ */
 public class Boat extends WaterVehicle {
-    // Company name for boat
+
+    /** The manufacturing company of the boat. */
     private String companyName;
 
+    /**
+     * Constructs a Boat.
+     * <p>
+     * Boats always have a horsepower of 300.
+     * </p>
+     *
+     * @param price the boat price (validated in {@link Vehicle})
+     * @param miles the boat mileage (validated in {@link Vehicle})
+     * @param weight the boat weight (validated in {@link WaterVehicle})
+     * @param companyName the company name
+     */
     public Boat(double price, double miles, double weight, String companyName) {
-        // Boats are always 300 HP
         super(price, 300, miles, weight);
         this.companyName = companyName;
     }
 
-    // Force boat HP to 300
+    /**
+     * Sets the horsepower for the boat.
+     * <p>
+     * Boats must always have exactly 300 horsepower.
+     * </p>
+     *
+     * @param hp the horsepower value
+     * @throws IllegalArgumentException if hp is not 300
+     */
     @Override
     public void setHorsepower(int hp) {
         if (hp != 300) {
@@ -19,14 +45,24 @@ public class Boat extends WaterVehicle {
         setInternalHorsepower(300);
     }
 
-    // Getter for company
+    /**
+     * Returns the company name.
+     *
+     * @return manufacturer name
+     */
     public String getCompanyName() {
         return companyName;
     }
 
+    /**
+     * Returns a formatted string representation of this Boat.
+     *
+     * @return string describing the boat's attributes
+     */
     @Override
     public String toString() {
-        return String.format("Boat: Price: $%.2f, Horsepower: %d, Mileage: %.1f, Weight: %.1f lbs, Company: %s",
+        return String.format(
+                "Boat: Price: $%.2f, Horsepower: %d, Mileage: %.1f, Weight: %.1f lbs, Company: %s",
                 getPrice(), getHorsepower(), getMileage(), getWeight(), companyName);
     }
 }
