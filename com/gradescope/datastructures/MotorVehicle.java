@@ -26,15 +26,15 @@ abstract class MotorVehicle extends Vehicle {
      *
      * @param price the vehicle price (validated in {@link Vehicle})
      * @param hp the horsepower (validated by subclass implementation)
-     * @param miles the vehicle mileage (validated in {@link Vehicle})
+     * @param miles the vehicle mileage (must be non-negative)
      * @param zeroToSixty the 0–60 mph acceleration time in seconds (must be between 1 and 10)
-     * @param color the vehicle color (no validation applied)
-     * @throws IllegalArgumentException if zeroToSixty is outside the valid range
+     * @param color the vehicle color (must not be null or blank)
+     * @throws IllegalArgumentException if zeroToSixty is out of range or color is null/blank
      */
     public MotorVehicle(double price, int hp, double miles, double zeroToSixty, String color) {
         super(price, hp, miles);
         setZeroToSixty(zeroToSixty);
-        this.color = color;
+        setColor(color);
     }
 
     /**
@@ -50,7 +50,7 @@ abstract class MotorVehicle extends Vehicle {
      * Sets the 0–60 mph acceleration time after validation.
      *
      * @param time acceleration time in seconds (must be between 1 and 10 inclusive)
-     * @throws IllegalArgumentException if time is outside the allowed range
+     * @throws IllegalArgumentException if time is outside valid range
      */
     public void setZeroToSixty(double time) {
         if (time < 1 || time > 10) {
@@ -58,7 +58,7 @@ abstract class MotorVehicle extends Vehicle {
         }
         this.zeroToSixty = time;
     }
-    
+
     /**
      * Returns the color of the vehicle.
      *
@@ -70,13 +70,14 @@ abstract class MotorVehicle extends Vehicle {
 
     /**
      * Sets the color of the vehicle.
-     * <p>
-     * No validation is performed.
-     * </p>
      *
-     * @param color the new color
+     * @param color the new color (must not be null or blank)
+     * @throws IllegalArgumentException if color is null or blank
      */
     public void setColor(String color) {
+        if (color == null || color.isBlank()) {
+            throw new IllegalArgumentException("Color cannot be null or blank");
+        }
         this.color = color;
     }
 }

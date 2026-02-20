@@ -21,11 +21,12 @@ public class Boat extends WaterVehicle {
      * @param price the boat price (validated in {@link Vehicle})
      * @param miles the boat mileage (validated in {@link Vehicle})
      * @param weight the boat weight (validated in {@link WaterVehicle})
-     * @param companyName the company name
+     * @param companyName the company name (must not be null or blank)
+     * @throws IllegalArgumentException if companyName is null or blank
      */
     public Boat(double price, double miles, double weight, String companyName) {
         super(price, 300, miles, weight);
-        this.companyName = companyName;
+        setCompanyName(companyName); // ✅ Use setter for validation
     }
 
     /**
@@ -52,6 +53,19 @@ public class Boat extends WaterVehicle {
      */
     public String getCompanyName() {
         return companyName;
+    }
+
+    /**
+     * Sets the company name.
+     *
+     * @param companyName the company name (must not be null or blank)
+     * @throws IllegalArgumentException if companyName is null or blank
+     */
+    public void setCompanyName(String companyName) {
+        if (companyName == null || companyName.isBlank()) {
+            throw new IllegalArgumentException("Company name cannot be null or blank");
+        }
+        this.companyName = companyName;
     }
 
     /**

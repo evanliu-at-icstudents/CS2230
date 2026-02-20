@@ -19,12 +19,12 @@ public class Canoe extends WaterVehicle {
      * @param hp the horsepower (must be 2 or 4)
      * @param miles the canoe mileage (validated in {@link Vehicle})
      * @param weight the canoe weight (validated in {@link WaterVehicle})
-     * @param color the canoe color
-     * @throws IllegalArgumentException if horsepower is invalid
+     * @param color the canoe color (must not be null or blank)
+     * @throws IllegalArgumentException if horsepower is invalid or color is null/blank
      */
     public Canoe(double price, int hp, double miles, double weight, String color) {
         super(price, hp, miles, weight);
-        this.color = color;
+        setColor(color); // ✅ Use setter for validation
     }
 
     /**
@@ -58,7 +58,7 @@ public class Canoe extends WaterVehicle {
      */
     public void setColor(String color) {
         if (color == null || color.isBlank()) {
-            throw new IllegalArgumentException("Color cannot be null");
+            throw new IllegalArgumentException("Color cannot be null or blank");
         }
         this.color = color;
     }
