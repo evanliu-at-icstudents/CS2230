@@ -24,7 +24,7 @@ public class Canoe extends WaterVehicle {
      */
     public Canoe(double price, int hp, double miles, double weight, String color) {
         super(price, hp, miles, weight);
-        setColor(color); // ✅ Use setter for validation
+        setColor(color);
     }
 
     /**

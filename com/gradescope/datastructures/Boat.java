@@ -26,7 +26,7 @@ public class Boat extends WaterVehicle {
      */
     public Boat(double price, double miles, double weight, String companyName) {
         super(price, 300, miles, weight);
-        setCompanyName(companyName); // ✅ Use setter for validation
+        setCompanyName(companyName);
     }
 
     /**
